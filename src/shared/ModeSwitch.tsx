@@ -1,14 +1,14 @@
-import {Button, Flex, Image} from '@chakra-ui/react'
+import {Button, Flex, Image, Text} from '@chakra-ui/react'
 import React from 'react'
 import runtimeLogo from '../assets/images/eye.svg'
 import runtimeLogoActive from '../assets/images/eye-active.svg'
 import constructorLogo from '../assets/images/selector.svg'
 import constructorLogoActive from '../assets/images/selector-active.svg'
 import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
-import {handleMode} from '../store/reducer/calcSlice'
+import {calcSliceActions} from '../store/store'
 
 const ModeSwitch: React.FC = (): JSX.Element => {
-   const calcStore = useAppSelector((state) => state.calcSlice)
+   const calcStore = useAppSelector((state) => state.calcReducer)
    const dispatch = useAppDispatch()
 
    return (
@@ -25,28 +25,28 @@ const ModeSwitch: React.FC = (): JSX.Element => {
                w='108px'
                h='36px'
                borderRadius='5px'
-               fontWeight='500'
-               fontSize='14px'
                backgroundColor={calcStore.mode ? 'white' : 'transparent'}
-               border={calcStore.mode ? '1px solid #E2E3E5' : 'none'}
-               onClick={() => dispatch(handleMode())}
+               border={calcStore.mode ? '1px solid #E2E3E5' : '1px solid transparent'}
+               onClick={() => dispatch(calcSliceActions.handleMode())}
                _hover={{backgroundColor: 'none'}}>
                <Image src={calcStore.mode ? runtimeLogoActive : runtimeLogo} />
-               Runtime
+               <Text marginLeft='8px' fontWeight='500' fontSize='14px'>
+                  Runtime
+               </Text>
             </Button>
          </Flex>
          <Flex>
             <Button
                w='133px'
                h='36px'
-               fontWeight='500'
-               fontSize='14px'
                backgroundColor={calcStore.mode ? 'transparent' : 'white'}
-               border={calcStore.mode ? 'none' : '1px solid #E2E3E5'}
+               border={calcStore.mode ? '1px solid transparent' : '1px solid #E2E3E5'}
                _hover={{backgroundColor: 'none'}}
-               onClick={() => dispatch(handleMode())}>
+               onClick={() => dispatch(calcSliceActions.handleMode())}>
                <Image src={calcStore.mode ? constructorLogo : constructorLogoActive} />
-               Constructor
+               <Text marginLeft='8px' fontWeight='500' fontSize='14px'>
+                  Constructor
+               </Text>
             </Button>
          </Flex>
       </Flex>

@@ -47,9 +47,6 @@ const mainTheme = extendTheme({
             },
          },
       },
-      Button: {
-         transition: '0.3s',
-      },
    },
    breakpoints: {
       xl: '120em', // 1920px

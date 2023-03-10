@@ -2,8 +2,8 @@ import {Flex, Text} from '@chakra-ui/react'
 import React from 'react'
 import {useAppSelector} from '../lib/redux/hooks'
 
-const Result: React.FC = (): JSX.Element => {
-   const calcStore = useAppSelector((state) => state.calcSlice)
+const ResultWindow: React.FC = (): JSX.Element => {
+   const calcStore = useAppSelector((state) => state.calcReducer)
 
    return (
       <Flex
@@ -22,4 +22,4 @@ const Result: React.FC = (): JSX.Element => {
    )
 }
 
-export default Result
+export default ResultWindow
