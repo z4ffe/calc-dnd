@@ -1,4 +1,4 @@
-interface IcalcInitialState {
+interface ICalcInitialState {
    mode: boolean
    display: number
    operandOne: number
@@ -6,4 +6,10 @@ interface IcalcInitialState {
    operator: string
 }
 
-export default IcalcInitialState
+interface IDropZone {
+   id: string
+   order: number
+   element: string
+}
+
+export {ICalcInitialState, IDropZone}

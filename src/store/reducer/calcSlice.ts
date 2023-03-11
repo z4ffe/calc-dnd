@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
-import IcalcInitialState from '../../ts/interfaces/index.inerfaces'
+import {ICalcInitialState} from '../../ts/interfaces/index.inerfaces'
 
-const calcInitialState: IcalcInitialState = {
+const calcInitialState: ICalcInitialState = {
    mode: false,
    display: 0,
    operandOne: 0,
