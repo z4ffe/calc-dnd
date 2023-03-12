@@ -12,13 +12,18 @@ const Runtime: React.FC = (): JSX.Element => {
    const dndStore = useAppSelector((state) => state.dndReducer)
 
    return (
-      <Flex w='243px' h='448px' justifyContent='center' border='2px dashed #C4C4C4' borderRadius='6px'>
+      <Flex
+         w='243px'
+         h='448px'
+         justifyContent='center'
+         border={dndStore.runtimeZone.length ? '2px dashed transparent' : '2px dashed #C4C4C4'}
+         borderRadius='6px'>
          <Droppable droppableId='dropZoneRuntime'>
             {(provided) =>
                dndStore.runtimeZone.length ? (
                   <Flex flexDir='column' gap='12px' ref={provided.innerRef}>
                      {dndStore.runtimeZone.map((el, idx) => (
-                        <Draggable draggableId={el.id} index={idx} key={el.id}>
+                        <Draggable draggableId={el.id} index={el.order} key={el.id}>
                            {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
                            {(provided) => (
                               // eslint-disable-next-line react/jsx-props-no-spreading
@@ -36,6 +41,7 @@ const Runtime: React.FC = (): JSX.Element => {
                            )}
                         </Draggable>
                      ))}
+                     {provided.placeholder}
                   </Flex>
                ) : (
                   <Flex w='127px' h='48px' flexDir='column' margin='auto' alignItems='center' ref={provided.innerRef}>

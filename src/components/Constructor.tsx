@@ -9,12 +9,6 @@ import ResultWindow from '../shared/ResultWindow'
 
 const Constructor: React.FC = (): JSX.Element => {
    const dndStore = useAppSelector((state) => state.dndReducer)
-   /* const calculatorElementsConstructor = [
-      {id: 'res', order: 1, element: <ResultWindow />},
-      {id: 'operator', order: 2, element: <Operators />},
-      {id: 'operand', order: 3, element: <Operands />},
-      {id: 'equal', order: 4, element: <EqualButton />},
-   ] */
 
    return (
       <Flex w='100%' flexDir='column' alignItems='center' gap='12px'>
@@ -22,7 +16,7 @@ const Constructor: React.FC = (): JSX.Element => {
             {(provided) => (
                <Flex ref={provided.innerRef} flexDir='column' alignItems='center' gap='12px'>
                   {dndStore.constructorZone.map((el, idx) => (
-                     <Draggable draggableId={el.id} index={idx} key={el.id}>
+                     <Draggable draggableId={el.id} index={el.order} key={el.id}>
                         {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
                         {(provided) => (
                            // eslint-disable-next-line react/jsx-props-no-spreading
