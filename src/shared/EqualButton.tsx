@@ -2,9 +2,9 @@ import {Button, Flex} from '@chakra-ui/react'
 import React from 'react'
 import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
 import {calcSliceActions} from '../store/store'
-import {IDropZone} from '../ts/interfaces/index.inerfaces'
+import {DraggedProps} from '../ts/types/index.types'
 
-const EqualButton: React.FC<IDropZone | any> = ({dragged}): JSX.Element => {
+const EqualButton: React.FC<DraggedProps> = ({dragged}): JSX.Element => {
    const calcStore = useAppSelector((state) => state.calcReducer)
    const dispatch = useAppDispatch()
 

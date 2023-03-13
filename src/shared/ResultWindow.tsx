@@ -1,9 +1,9 @@
 import {Flex, Text} from '@chakra-ui/react'
 import React from 'react'
 import {useAppSelector} from '../lib/redux/hooks'
-import {IDropZone} from '../ts/interfaces/index.inerfaces'
+import {DraggedProps} from '../ts/types/index.types'
 
-const ResultWindow: React.FC<IDropZone | any> = ({dragged}): JSX.Element => {
+const ResultWindow: React.FC<DraggedProps> = ({dragged}): JSX.Element => {
    const calcStore = useAppSelector((state) => state.calcReducer)
 
    return (

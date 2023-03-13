@@ -4,4 +4,8 @@ type ReactChildren = {
    children: ReactNode
 }
 
-export default ReactChildren
+type DraggedProps = {
+   dragged?: boolean
+}
+
+export {ReactChildren, DraggedProps}

@@ -4,7 +4,7 @@ import {DragDropContext} from 'react-beautiful-dnd'
 import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
 import ModeSwitch from '../shared/ModeSwitch'
 import {dndSliceActions} from '../store/store'
-import ReactChildren from '../ts/types/index.types'
+import {ReactChildren} from '../ts/types/index.types'
 
 const MainLayout: React.FC<ReactChildren> = ({children}): JSX.Element => {
    const dispatch = useAppDispatch()

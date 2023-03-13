@@ -2,9 +2,9 @@ import {Button, Grid, GridItem} from '@chakra-ui/react'
 import React from 'react'
 import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
 import {calcSliceActions} from '../store/store'
-import {IDropZone} from '../ts/interfaces/index.inerfaces'
+import {DraggedProps} from '../ts/types/index.types'
 
-const Operands: React.FC<IDropZone | any> = ({dragged}): JSX.Element => {
+const Operands: React.FC<DraggedProps> = ({dragged}): JSX.Element => {
    const operandsList: string[] = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', ',']
    const calcStore = useAppSelector((state) => state.calcReducer)
    const dispatch = useAppDispatch()
@@ -20,7 +20,7 @@ const Operands: React.FC<IDropZone | any> = ({dragged}): JSX.Element => {
          boxShadow='0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)'>
          {operandsList.map((el) => {
             return (
-               <GridItem colSpan={el === '0' ? 2 : 1} display='flex' alignItems='center' justifyContent='center' key={crypto.randomUUID()}>
+               <GridItem colSpan={el === '0' ? 2 : 1} display='flex' alignItems='center' justifyContent='center' key={el}>
                   <Button
                      w={el === '0' ? '152px' : '72px'}
                      h='48px'

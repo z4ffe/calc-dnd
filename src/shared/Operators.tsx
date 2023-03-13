@@ -2,9 +2,9 @@ import {Button, Flex} from '@chakra-ui/react'
 import React from 'react'
 import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
 import {calcSliceActions} from '../store/store'
-import {IDropZone} from '../ts/interfaces/index.inerfaces'
+import {DraggedProps} from '../ts/types/index.types'
 
-const Operators: React.FC<IDropZone | any> = ({dragged}): JSX.Element => {
+const Operators: React.FC<DraggedProps> = ({dragged}): JSX.Element => {
    const dispatch = useAppDispatch()
    const calcStore = useAppSelector((state) => state.calcReducer)
    const operatorsList: string[] = ['/', 'х', '-', '+']
@@ -31,7 +31,7 @@ const Operators: React.FC<IDropZone | any> = ({dragged}): JSX.Element => {
                   _hover={{backgroundColor: 'white', border: '1px solid #5D5FEF'}}
                   _active={{backgroundColor: '#5D5FEF', border: '1px solid #5D5FEF', color: 'white'}}
                   onClick={() => dispatch(calcSliceActions.handleOperator(el))}
-                  key={crypto.randomUUID()}>
+                  key={el}>
                   {el}
                </Button>
             )

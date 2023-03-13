@@ -13,7 +13,7 @@ const Constructor: React.FC = (): JSX.Element => {
 
    return (
       <Flex w='100%' flexDir='column' alignItems='center' gap='12px' transform={calcStore.mode ? 'translate(-380px)' : ''} transition='1s'>
-         <Droppable droppableId='dropZoneConstructor'>
+         <Droppable droppableId='dropZoneConstructor' isDropDisabled>
             {(provided) => (
                <Flex ref={provided.innerRef} flexDir='column' alignItems='center' gap='12px'>
                   {dndStore.constructorZone.map((el, idx) => (
