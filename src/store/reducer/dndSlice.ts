@@ -20,12 +20,18 @@ const dndSlice = createSlice({
          const {constructorZone, runtimeZone} = current(state)
          if (action.payload.destination.droppableId === 'dropZoneRuntime' && action.payload.source.droppableId === 'dropZoneConstructor') {
             const tempRuntimeZone = constructorZone.find((el) => el.id === action.payload.draggableId)
+            const modifiedElement = {
+               id: `${tempRuntimeZone!.id}Copy`,
+               order: tempRuntimeZone!.order,
+               element: tempRuntimeZone!.element,
+               dragged: tempRuntimeZone!.dragged,
+            }
             const tempConstructorZone = constructorZone.map((el) => {
                if (el.id === action.payload.draggableId) return {id: el.id, order: el.order, element: el.element, dragged: true}
                return el
             })
             if (tempRuntimeZone && tempConstructorZone) {
-               state.runtimeZone = [...runtimeZone, tempRuntimeZone]
+               state.runtimeZone = [...runtimeZone, modifiedElement]
                state.constructorZone = tempConstructorZone
             }
          }
