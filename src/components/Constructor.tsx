@@ -17,18 +17,18 @@ const Constructor: React.FC = (): JSX.Element => {
             {(provided) => (
                <Flex ref={provided.innerRef} flexDir='column' alignItems='center' gap='12px'>
                   {dndStore.constructorZone.map((el, idx) => (
-                     <Draggable draggableId={el.id} index={idx} key={el.id}>
+                     <Draggable draggableId={el.id} index={idx} key={el.id} isDragDisabled={el.dragged}>
                         {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
                         {(provided) => (
                            <Flex {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                               {el.element === 'resultWindow' ? (
-                                 <ResultWindow />
+                                 <ResultWindow dragged={el.dragged} />
                               ) : el.element === 'operators' ? (
-                                 <Operators />
+                                 <Operators dragged={el.dragged} />
                               ) : el.element === 'operands' ? (
-                                 <Operands />
+                                 <Operands dragged={el.dragged} />
                               ) : el.element === 'equalButton' ? (
-                                 <EqualButton />
+                                 <EqualButton dragged={el.dragged} />
                               ) : null}
                            </Flex>
                         )}

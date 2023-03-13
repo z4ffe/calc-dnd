@@ -1,14 +1,16 @@
 import {Flex, Text} from '@chakra-ui/react'
 import React from 'react'
 import {useAppSelector} from '../lib/redux/hooks'
+import {IDropZone} from '../ts/interfaces/index.inerfaces'
 
-const ResultWindow: React.FC = (): JSX.Element => {
+const ResultWindow: React.FC<IDropZone | any> = ({dragged}): JSX.Element => {
    const calcStore = useAppSelector((state) => state.calcReducer)
 
    return (
       <Flex
          w='240px'
          h='60px'
+         opacity={dragged ? '0.4' : '1'}
          borderRadius='4px'
          boxShadow='0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)'
          alignItems='center'

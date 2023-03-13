@@ -10,6 +10,7 @@ interface IDropZone {
    id: string
    order: number
    element: string
+   dragged: boolean
 }
 
 export {ICalcInitialState, IDropZone}

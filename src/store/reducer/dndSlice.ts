@@ -3,10 +3,10 @@ import {IDropZone} from '../../ts/interfaces/index.inerfaces'
 
 const dndInitialState = {
    constructorZone: [
-      {id: 'res', order: 0, element: 'resultWindow'},
-      {id: 'operator', order: 1, element: 'operators'},
-      {id: 'operand', order: 2, element: 'operands'},
-      {id: 'equal', order: 3, element: 'equalButton'},
+      {id: 'res', order: 0, element: 'resultWindow', dragged: false},
+      {id: 'operator', order: 1, element: 'operators', dragged: false},
+      {id: 'operand', order: 2, element: 'operands', dragged: false},
+      {id: 'equal', order: 3, element: 'equalButton', dragged: false},
    ] as Array<IDropZone>,
    runtimeZone: [] as Array<IDropZone>,
 }
@@ -20,7 +20,10 @@ const dndSlice = createSlice({
          const {constructorZone, runtimeZone} = current(state)
          if (action.payload.destination.droppableId === 'dropZoneRuntime' && action.payload.source.droppableId === 'dropZoneConstructor') {
             const tempRuntimeZone = constructorZone.find((el) => el.id === action.payload.draggableId)
-            const tempConstructorZone = constructorZone.filter((el) => el.id !== action.payload.draggableId)
+            const tempConstructorZone = constructorZone.map((el) => {
+               if (el.id === action.payload.draggableId) return {id: el.id, order: el.order, element: el.element, dragged: true}
+               return el
+            })
             if (tempRuntimeZone && tempConstructorZone) {
                state.runtimeZone = [...runtimeZone, tempRuntimeZone]
                state.constructorZone = tempConstructorZone

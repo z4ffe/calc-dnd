@@ -2,8 +2,9 @@ import {Button, Flex} from '@chakra-ui/react'
 import React from 'react'
 import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
 import {calcSliceActions} from '../store/store'
+import {IDropZone} from '../ts/interfaces/index.inerfaces'
 
-const Operators: React.FC = (): JSX.Element => {
+const Operators: React.FC<IDropZone | any> = ({dragged}): JSX.Element => {
    const dispatch = useAppDispatch()
    const calcStore = useAppSelector((state) => state.calcReducer)
    const operatorsList: string[] = ['/', 'х', '-', '+']
@@ -14,6 +15,7 @@ const Operators: React.FC = (): JSX.Element => {
          h='56px'
          alignItems='center'
          justifyContent='space-around'
+         opacity={dragged ? '0.4' : '1'}
          borderRadius='6px'
          boxShadow='0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)'>
          {operatorsList.map((el) => {

@@ -54,6 +54,7 @@ const Runtime: React.FC = (): JSX.Element => {
                      <Text fontWeight='400' fontSize='12px' textAlign='center' color='#6B7280'>
                         любой элемент из левой панели
                      </Text>
+                     {provided.placeholder}
                   </Flex>
                )
             }
