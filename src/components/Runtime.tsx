@@ -18,6 +18,8 @@ const Runtime: React.FC = (): JSX.Element => {
          h='448px'
          marginLeft='27px'
          justifyContent='center'
+         transition='.5s'
+         _hover={{backgroundColor: dndStore.runtimeZone.length >= 1 ? 'transparent' : '#F0F9FF'}}
          border={dndStore.runtimeZone.length ? '2px dashed transparent' : '2px dashed #C4C4C4'}
          borderRadius='6px'>
          <Droppable droppableId='dropZoneRuntime'>
