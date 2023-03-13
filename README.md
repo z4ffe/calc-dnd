@@ -1,4 +1,4 @@
-<h3 align="center">Tech News</h3>
+<h3 align="center">Calculator Drag & Drop Constructor</h3>
 <hr/>
 <h5 align="center">React App<br/>TypeScript, React, Redux, Chakra UI, React Beautiful DnD</h5> 
 <hr/>
