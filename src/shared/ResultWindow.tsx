@@ -14,7 +14,7 @@ const ResultWindow: React.FC = (): JSX.Element => {
          alignItems='center'
          justifyContent='center'>
          <Flex w='232px' h='52px' backgroundColor='#F3F4F6' borderRadius='6px'>
-            <Text w='100%' paddingRight='8px' textAlign='right' color='#111827' fontWeight='800' fontSize='36px'>
+            <Text w='100%' paddingRight='8px' textAlign='right' color='#111827' fontWeight='800' fontSize='25px' alignSelf='center'>
                {calcStore.display}
             </Text>
          </Flex>

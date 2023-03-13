@@ -3,9 +3,9 @@ import {ICalcInitialState} from '../../ts/interfaces/index.inerfaces'
 
 const calcInitialState: ICalcInitialState = {
    mode: false,
-   display: 0,
-   operandOne: 0,
-   operandTwo: 0,
+   display: '0',
+   operandOne: '',
+   operandTwo: '',
    operator: '',
 }
 
@@ -22,12 +22,54 @@ const calcSlice = createSlice({
       },
       handleOperator: (state, action) => {
          if (state.mode) {
+            if (state.display !== state.operandOne) state.operandTwo = state.display
+            else state.operandTwo = state.operandOne
             state.operator = action.payload
+            state.operandOne = ''
+            state.display = '0'
          }
       },
       handleOperand: (state, action) => {
          if (state.mode) {
-            state.operandOne = action.payload
+            if (state.display.length >= 13) return
+            if (state.operandOne.includes('.') && action.payload === ',') return
+            if (!state.operandOne.includes('.') && action.payload === ',') {
+               state.operandOne += '.'
+               state.display = state.operandOne
+               return
+            }
+            state.operandOne += action.payload
+            state.display = state.operandOne
+         }
+      },
+      handleCalculate: (state) => {
+         if (state.mode) {
+            if (state.operator === '/' && state.operandOne === '0') {
+               state.display = 'Не определено'
+               return
+            }
+            switch (state.operator) {
+               case '+':
+                  state.operandOne = (+state.operandTwo + +state.operandOne).toString().slice(0, 13)
+                  state.operandTwo = state.operandOne
+                  state.display = state.operandOne
+                  break
+               case '-':
+                  state.display = (+state.operandTwo - +state.operandOne).toString().slice(0, 13)
+                  state.operandTwo = state.display
+                  break
+               case 'х':
+                  state.operandOne = (+state.operandTwo * +state.operandOne).toString().slice(0, 13)
+                  state.operandTwo = state.operandOne
+                  state.display = state.operandOne
+                  break
+               case '/':
+                  state.operandOne = (+state.operandTwo / +state.operandOne).toString().slice(0, 13)
+                  state.operandTwo = state.operandOne
+                  state.display = state.operandOne
+                  break
+               default:
+            }
          }
       },
    },

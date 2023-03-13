@@ -1,10 +1,11 @@
 import {Button, Flex} from '@chakra-ui/react'
 import React from 'react'
-import {useAppDispatch} from '../lib/redux/hooks'
+import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
 import {calcSliceActions} from '../store/store'
 
 const Operators: React.FC = (): JSX.Element => {
    const dispatch = useAppDispatch()
+   const calcStore = useAppSelector((state) => state.calcReducer)
    const operatorsList: string[] = ['/', 'х', '-', '+']
 
    return (
@@ -24,6 +25,7 @@ const Operators: React.FC = (): JSX.Element => {
                   borderRadius='6px'
                   backgroundColor='white'
                   transition='0.3s'
+                  pointerEvents={calcStore.mode ? 'auto' : 'none'}
                   _hover={{backgroundColor: 'white', border: '1px solid #5D5FEF'}}
                   _active={{backgroundColor: '#5D5FEF', border: '1px solid #5D5FEF', color: 'white'}}
                   onClick={() => dispatch(calcSliceActions.handleOperator(el))}

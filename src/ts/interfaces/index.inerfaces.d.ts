@@ -1,8 +1,8 @@
 interface ICalcInitialState {
    mode: boolean
-   display: number
-   operandOne: number
-   operandTwo: number
+   display: string
+   operandOne: string
+   operandTwo: string
    operator: string
 }
 

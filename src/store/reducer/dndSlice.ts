@@ -18,45 +18,26 @@ const dndSlice = createSlice({
       handleDnD: (state, action) => {
          if (!action.payload.destination) return
          const {constructorZone, runtimeZone} = current(state)
-         if (
-            action.payload.destination.droppableId === 'dropZoneRuntime' &&
-            action.payload.source.droppableId === 'dropZoneConstructor'
-         ) {
+         if (action.payload.destination.droppableId === 'dropZoneRuntime' && action.payload.source.droppableId === 'dropZoneConstructor') {
             const tempRuntimeZone = constructorZone.find((el) => el.id === action.payload.draggableId)
             const tempConstructorZone = constructorZone.filter((el) => el.id !== action.payload.draggableId)
             if (tempRuntimeZone && tempConstructorZone) {
-               state.runtimeZone = [...runtimeZone, tempRuntimeZone].sort((x, y) => x.order - y.order)
+               state.runtimeZone = [...runtimeZone, tempRuntimeZone]
                state.constructorZone = tempConstructorZone
             }
          }
       },
       handleReorder: (state, action) => {
-         if (!action.payload.destination) return
+         if (!action.payload.destination || action.payload.destination.index === action.payload.source.index) return
          const {runtimeZone} = current(state)
-         if (
-            action.payload.destination.droppableId === 'dropZoneRuntime' &&
-            action.payload.source.droppableId === 'dropZoneRuntime'
-         ) {
-            // const newRuntimeZone = runtimeZone.splice()
+         if (action.payload.destination.droppableId === 'dropZoneRuntime' && action.payload.source.droppableId === 'dropZoneRuntime') {
+            const tempRuntimeZone = [...runtimeZone]
+            const [movedSource] = tempRuntimeZone.splice(action.payload.destination.index, 1, tempRuntimeZone[action.payload.source.index])
+            tempRuntimeZone.splice(action.payload.source.index, 1, movedSource)
+            state.runtimeZone = tempRuntimeZone
          }
       },
    },
 })
 
 export default dndSlice
-
-/*
-{
-    "draggableId": "equal",
-    "type": "DEFAULT",
-    "source": {
-        "droppableId": "dropZoneRuntime",
-        "index": 3
-    },
-    "mode": "FLUID",
-    "combine": null,
-    "destination": {
-        "droppableId": "dropZoneRuntime",
-        "index": 1
-    }
-} */

@@ -1,7 +1,12 @@
 import {Button, Flex} from '@chakra-ui/react'
 import React from 'react'
+import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
+import {calcSliceActions} from '../store/store'
 
 const EqualButton: React.FC = (): JSX.Element => {
+   const calcStore = useAppSelector((state) => state.calcReducer)
+   const dispatch = useAppDispatch()
+
    return (
       <Flex
          w='240px'
@@ -16,6 +21,8 @@ const EqualButton: React.FC = (): JSX.Element => {
             backgroundColor='#5D5FEF'
             color='white'
             borderRadius='6px'
+            pointerEvents={calcStore.mode ? 'auto' : 'none'}
+            onClick={() => dispatch(calcSliceActions.handleCalculate())}
             _hover={{backgroundColor: '#4749e7'}}
             _active={{backgroundColor: '#3133e3'}}>
             =

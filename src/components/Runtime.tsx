@@ -10,11 +10,13 @@ import ResultWindow from '../shared/ResultWindow'
 
 const Runtime: React.FC = (): JSX.Element => {
    const dndStore = useAppSelector((state) => state.dndReducer)
+   const calcStore = useAppSelector((state) => state.calcReducer)
 
    return (
       <Flex
          w='243px'
          h='448px'
+         marginLeft='27px'
          justifyContent='center'
          border={dndStore.runtimeZone.length ? '2px dashed transparent' : '2px dashed #C4C4C4'}
          borderRadius='6px'>
@@ -23,7 +25,7 @@ const Runtime: React.FC = (): JSX.Element => {
                dndStore.runtimeZone.length ? (
                   <Flex flexDir='column' gap='12px' ref={provided.innerRef}>
                      {dndStore.runtimeZone.map((el, idx) => (
-                        <Draggable draggableId={el.id} index={el.order} key={el.id}>
+                        <Draggable draggableId={el.id} index={idx} key={el.id} isDragDisabled={calcStore.mode}>
                            {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
                            {(provided) => (
                               // eslint-disable-next-line react/jsx-props-no-spreading

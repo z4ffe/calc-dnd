@@ -1,8 +1,12 @@
 import {Button, Grid, GridItem} from '@chakra-ui/react'
 import React from 'react'
+import {useAppDispatch, useAppSelector} from '../lib/redux/hooks'
+import {calcSliceActions} from '../store/store'
 
 const Operands: React.FC = (): JSX.Element => {
    const operandsList: string[] = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', ',']
+   const calcStore = useAppSelector((state) => state.calcReducer)
+   const dispatch = useAppDispatch()
 
    return (
       <Grid
@@ -22,6 +26,8 @@ const Operands: React.FC = (): JSX.Element => {
                      borderRadius='6px'
                      backgroundColor='white'
                      transition='0.3s'
+                     pointerEvents={calcStore.mode ? 'auto' : 'none'}
+                     onClick={() => dispatch(calcSliceActions.handleOperand(el))}
                      _hover={{backgroundColor: 'white', border: '1px solid #5D5FEF'}}
                      _active={{backgroundColor: '#5D5FEF', border: '1px solid #5D5FEF', color: 'white'}}>
                      {el}
